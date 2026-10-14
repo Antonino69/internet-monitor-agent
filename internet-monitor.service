@@ -1,0 +1,16 @@
+[Unit]
+Description=Internet connection monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/internet-monitor
+ExecStart=/usr/bin/python3 /opt/internet-monitor/internet_monitor.py run
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
